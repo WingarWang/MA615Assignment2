@@ -24,6 +24,8 @@ library(dplyr)
 library(reader)
 ```
 
+I choose co2 intensity of economic output and gdp total yearly growth. The former is the amount of CO2 produced to develop the economy. The latter is an important indicator to measure the economy of a country, and its annual growth represents the level of economic progress of the country.I selected 2000 to 2012 data from the United States and China.
+
 ```{r}
 setwd("C:/Users/L/Downloads")
 
@@ -141,6 +143,6 @@ According to plot 3, the density of CO2 output in China is higher than that in t
 The U.S. is between 0.3 and 0.4, and China's is between 0.7 and 0.8.
 So China produces more CO2 in economic fields than the US.
 
-In conclusion, China consumes more CO2 in economic construction, so that China's GDP growth is higher than America's. 
+In conclusion, China consumes more CO2 in economic construction, so that China's GDP growth is higher than the US's. 
 
 
