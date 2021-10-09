@@ -1,9 +1,9 @@
 setwd("C:/Users/L/Downloads")
 
-install.packages("readxl")
+#install.packages("readxl")
 library(readxl)
 
-install.packages("xlsx")
+#install.packages("xlsx")
 library("xlsx")
 
 library(tidyverse)
@@ -11,7 +11,7 @@ library(tidyverse)
 library(tidyr)
 library(dplyr)
 
-install.packages("reader")
+#install.packages("reader")
 library(reader)
 
 ##########################################################
