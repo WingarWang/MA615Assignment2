@@ -24,7 +24,10 @@ library(dplyr)
 library(reader)
 ```
 
-I choose co2 intensity of economic output and gdp total yearly growth. The former is the amount of CO2 produced to develop the economy. The latter is an important indicator to measure the economy of a country, and its annual growth represents the level of economic progress of the country.I selected 2000 to 2012 data from the United States and China.
+I choose co2 intensity of economic output and gdp total yearly growth. 
+The former is the amount of CO2 produced to develop the economy. 
+The latter is an important indicator to measure the economy of a country, and its annual growth represents the level of economic progress of the country.
+I selected 2000 to 2012 data from the United States and China.
 
 ```{r}
 setwd("C:/Users/L/Downloads")
