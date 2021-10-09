@@ -109,7 +109,7 @@ plot1<-ggplot(data=tidy_use) +
 plot1
 ```
 
-According to plot 1, the GDP growth rate of US is lower than that of China.
+According to plot 1, the GDP growth rate of US is lower than that of China under most circumstances.
 From 2013 to 2015, the U.S. reversed the trend.
 In both countries the trend is upward.
 
@@ -126,7 +126,8 @@ plot2
 ```
 
 According to plot 2, the US's overall GPD growth is lower than China's.
-Negative growth appeared in 2007 and 2008 from the US.
+According to the US, negative growth appeared in 2007 and 2008.
+The US's GDP growth is leveling off and China's is rising.
 
 
 ```{r}
@@ -136,8 +137,10 @@ plot3<-ggplot(data=tidy_use, aes(x=co2, fill=country)) +
 plot3
 ```
 
-According to plot 3, the density of CO2 output in the United States is higher than that in China.
-So the United States produces more CO2 in economic fields than China.
+According to plot 3, the density of CO2 output in China is higher than that in the United States.
+The U.S. is between 0.3 and 0.4, and China's is between 0.7 and 0.8.
+So China produces more CO2 in economic fields than the US.
 
+In conclusion, China consumes more CO2 in economic construction, so that China's GDP growth is higher than America's. 
 
 
