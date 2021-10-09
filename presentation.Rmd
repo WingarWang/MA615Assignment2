@@ -1,0 +1,143 @@
+---
+title: "presentation"
+author: "Yujia_Wang"
+date: "10/8/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, echo = FALSE, message = FALSE, warning=FALSE, margin=TRUE)
+
+#opts_chunk$set(comment=NA, echo = FALSE, message = FALSE, warning=FALSE, margin=TRUE)
+
+#opts_chunk$set(echo = FALSE, message = FALSE, warning=FALSE, margin=TRUE)
+
+library(readxl)
+
+library("xlsx")
+
+library(tidyverse)
+
+library(tidyr)
+library(dplyr)
+
+library(reader)
+```
+
+```{r}
+setwd("C:/Users/L/Downloads")
+
+gdp_all<-read_xlsx("gdp_total_yearly_growth.xlsx")
+co2_all<-read_excel("co2_intensity_of_economic_output_kg_co2_per_2011_ppp_of_gdp.xlsx")
+
+#as_tibble(gdp_all)
+#as_tibble(co2_all)
+
+gdp<-select(gdp_all,"country","2000":"2012")
+co2<-select(co2_all,"country","2000":"2012")
+
+##########################################################
+
+gdp_tidy<- gdp %>% 
+  pivot_longer(!country,names_to="year",values_to="gdp")
+
+co2_tidy<- co2 %>% 
+  pivot_longer(!country,names_to="year",values_to="co2")
+
+tidy<- co2_tidy %>% inner_join(gdp_tidy)
+
+tidy_use<- filter(tidy,country=="United States" | country=="China")
+
+##########################################################
+
+#function1
+plot1<-function(x){
+  try(if(!is.data.frame(x)) stop("Input data must be a data frame."))
+  
+  color=ifelse(x$country=="China","red","blue")
+  group<-ifelse(x$country=="China",1,2)
+  plota<-ggplot(data=x) +
+    geom_line(aes(x=year,y=gdp,colour=country,group=group))+
+    geom_point(aes(x=year,y=gdp,colour=color))+
+    labs(x="YEAR",
+         y="GDP",
+         subtitle="Line Chart: US vs China of GDP",
+         caption="Source:Gapminder")
+  return(plota)
+}
+#input: plot1(tidy_use)
+
+#function2
+plot2<-function(x){
+  try(if(!is.data.frame(x)) stop("Input data must be a data frame."))
+  
+  plotb<-ggplot(data=x) +
+    geom_bar(aes(x=year,y=gdp,fill=country),position="dodge",stat="identity")+
+    labs(x="YEAR",
+         y="GDP",
+         subtitle="Bar graph: US vs China of GDP",
+         caption="Source: Gapminder")
+  return(plotb)
+}
+#input: plot2(tidy_use)
+
+
+#function3
+plot3<-function(x){
+  try(if(!is.data.frame(x)) stop("Input data must be a data frame."))
+  
+  plotc<-ggplot(data=x, aes(x=co2, fill=country)) +
+    geom_density(alpha=0.3)
+  return(plotc)
+}
+#input: plot3(tidy_use)
+
+#This task is in Assignment 1 "hand_fuction"
+
+##########################################################
+
+#plot1
+color=ifelse(tidy_use$country=="China","red","blue")
+group<-ifelse(tidy_use$country=="China",1,2)
+plot1<-ggplot(data=tidy_use) +
+  geom_line(aes(x=year,y=gdp,colour=country,group=group))+
+  geom_point(aes(x=year,y=gdp,colour=color))+
+  labs(x="YEAR",
+       y="GDP",
+       subtitle="Line Chart: US vs China of GDP",
+       caption="Source:Gapminder")
+plot1
+```
+
+According to plot 1, the GDP growth rate of US is lower than that of China.
+From 2013 to 2015, the U.S. reversed the trend.
+In both countries the trend is upward.
+
+
+```{r}
+#plot2
+plot2<-ggplot(data=tidy_use) +
+  geom_bar(aes(x=year,y=gdp,fill=country),position="dodge",stat="identity")+
+  labs(x="YEAR",
+       y="GDP",
+       subtitle="Bar graph: US vs China of GDP",
+       caption="Source: Gapminder")
+plot2
+```
+
+According to plot 2, the US's overall GPD growth is lower than China's.
+Negative growth appeared in 2007 and 2008 from the US.
+
+
+```{r}
+#plot3
+plot3<-ggplot(data=tidy_use, aes(x=co2, fill=country)) +
+  geom_density(alpha=0.3)
+plot3
+```
+
+According to plot 3, the density of CO2 output in the United States is higher than that in China.
+So the United States produces more CO2 in economic fields than China.
+
+
+
