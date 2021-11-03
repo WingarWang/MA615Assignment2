@@ -75,3 +75,25 @@ plot3<-ggplot(data=tidy_use, aes(x=co2, fill=country)) +
 plot3
 
 
+##_______________________________
+
+#function2
+andrewplot <-function(x){
+  try(if(!is.data.frame(x)) stop("Input data must be a data frame."))
+  
+  plotb<-ggplot(data=x) +
+    geom_bar(aes(x=year,y=gdp,fill=co2),position="dodge",stat="identity")+
+    labs(x="YEAR",
+         y="GDP",
+         subtitle="Bar graph: US vs China of GDP",
+         caption="Source: Gapminder")
+  return(plotb)
+}
+andrewplot(tidy_use)
+
+
+## Added a plot that looks at both co2 and GDP in the same graph
+
+
+
+
